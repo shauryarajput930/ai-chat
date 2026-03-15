@@ -29,7 +29,7 @@
 
 
 /* ── 01. GEMINI API ── */
-const API_KEY = 'AIzaSyDUcB1QiSz_D1QNT9ZKP0hSWuViSEuJfWc';
+const API_KEY = 'AIzaSyD1LCN-FSBlo7IBAMjRjwBKJw-Wm6Pjudc';
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`;
 
 const SYSTEM_PROMPT = 'You are NeuralChat, a helpful, friendly, and knowledgeable AI assistant. Respond clearly, concisely, and helpfully.';
