@@ -1,35 +1,4 @@
-/* ═══════════════════════════════════════════════════
-   NEURALCHAT — app.js
-   Sections:
-   01. Gemini API
-   02. App State
-   03. Storage Helpers
-   04. Theme
-   05. Utility Functions
-   06. Message Row Builder
-   07. Message Actions
-   08. Render Functions
-   09. Session Management
-   10. Send Message
-   11. Search
-   12. Voice Input / Output
-   13. File Attachments
-   14. Export
-   15. Tags
-   16. Summarize
-   17. Side Panel (Starred / Bookmarks)
-   18. Folder Tabs
-   19. Offline Detection
-   20. Modal Helpers
-   21. Keyboard Shortcuts
-   22. Input Handlers
-   23. Sidebar (Mobile)
-   24. Initialization
-═══════════════════════════════════════════════════ */
-
-
-/* ── 01. GEMINI API ── */
-const API_KEY = 'AIzaSyD1LCN-FSBlo7IBAMjRjwBKJw-Wm6Pjudc';
+const API_KEY = 'AIzaSyA32dbBqGCGVQaSEL1yR3foQHVawtkjgxA';
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`;
 
 const SYSTEM_PROMPT = 'You are NeuralChat, a helpful, friendly, and knowledgeable AI assistant. Respond clearly, concisely, and helpfully.';
