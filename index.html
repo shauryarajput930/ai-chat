@@ -5,28 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NeuralChat — AI Assistant</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
 
-  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <div class="app" id="app">
 
-  <!-- Mobile sidebar backdrop -->
   <div class="sb-overlay" id="sb-overlay"></div>
 
-  <!-- ═══════════════════════════════════════
-       SIDEBAR
-  ═══════════════════════════════════════ -->
   <aside class="sidebar" id="sidebar">
 
     <div class="sidebar-header">
-      <!-- Logo row -->
       <div class="logo">
-        <!-- NeuralChat custom logo mark -->
         <div class="logo-icon" aria-label="NeuralChat logo">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
             <path d="M12 2L15.5 8.5H21L16.5 13L18.5 20L12 16.5L5.5 20L7.5 13L3 8.5H8.5L12 2Z"
@@ -35,7 +27,6 @@
         </div>
         <span class="logo-name">NeuralChat</span>
         <div class="logo-spacer"></div>
-        <!-- Theme toggle -->
         <button class="theme-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle dark/light theme">
           <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
@@ -50,7 +41,6 @@
         </button>
       </div>
 
-      <!-- Sidebar search -->
       <div class="sb-search">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -58,7 +48,6 @@
         <input type="text" id="sb-search" placeholder="Search chats…" autocomplete="off" />
       </div>
 
-      <!-- New chat button -->
       <button class="new-chat-btn" id="new-chat-btn" aria-label="New conversation">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
           <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
@@ -67,7 +56,6 @@
       </button>
     </div>
 
-    <!-- Folder filter tabs -->
     <div class="folder-tabs" id="folder-tabs">
       <button class="folder-tab active" data-folder="all">All</button>
       <button class="folder-tab" data-folder="starred">⭐</button>
@@ -76,20 +64,15 @@
       <button class="folder-tab" data-folder="personal">Personal</button>
     </div>
 
-    <!-- Section label -->
     <div class="sb-section" id="sb-label">Recent</div>
 
-    <!-- Chat history list -->
     <div class="chat-history" id="history-list"></div>
 
-    <!-- Footer: branding -->
     <div class="sidebar-footer">
-      <!-- Simple branding -->
       <div class="powered-by">
         <span class="powered-label">NeuralChat</span>
       </div>
 
-      <!-- Status badge -->
       <div class="model-badge">
         <div class="model-dot"></div>
         <span>Online</span>
@@ -98,20 +81,14 @@
 
   </aside>
 
-  <!-- ═══════════════════════════════════════
-       MAIN CONTENT
-  ═══════════════════════════════════════ -->
   <main class="main">
 
-    <!-- Offline warning -->
     <div class="offline-banner" id="offline-banner">
       ⚡ You're offline — using cached fallback responses
     </div>
 
-    <!-- Top bar -->
     <header class="topbar">
       <div class="topbar-left">
-        <!-- Mobile hamburger -->
         <button class="icon-btn hamburger" id="hamburger" aria-label="Open sidebar">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <line x1="3" y1="6" x2="21" y2="6"/>
@@ -119,9 +96,7 @@
             <line x1="3" y1="18" x2="21" y2="18"/>
           </svg>
         </button>
-        <!-- Chat title -->
         <span class="topbar-title" id="topbar-title">New Conversation</span>
-        <!-- Inline search bar (shown on Ctrl+F) -->
         <div class="search-bar" id="search-bar">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -131,7 +106,6 @@
         </div>
       </div>
 
-      <!-- Topbar action buttons -->
       <nav class="topbar-actions" aria-label="Chat actions">
         <button class="icon-btn" id="btn-search" aria-label="Search">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -168,12 +142,9 @@
       </nav>
     </header>
 
-    <!-- ── CHAT AREA ── -->
     <div class="chat-area" id="chat-area" role="log" aria-live="polite" aria-label="Chat messages">
 
-      <!-- Welcome screen -->
       <div class="welcome-screen" id="welcome">
-        <!-- Gemini-style animated logo -->
         <div class="welcome-icon" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
             <path d="M12 1.5C12 1.5 14 8 20 10C14 12 12 18.5 12 18.5C12 18.5 10 12 4 10C10 8 12 1.5 12 1.5Z"
@@ -183,7 +154,6 @@
         <h1 class="welcome-title">How can I help?</h1>
         <p class="welcome-sub">Ask me anything.</p>
 
-        <!-- Suggestion chips -->
         <div class="chips" role="list">
           <button class="chip" data-msg="Explain quantum computing in simple terms" role="listitem">Quantum computing</button>
           <button class="chip" data-msg="Write a short poem about the night sky" role="listitem">Write a poem</button>
@@ -194,42 +164,34 @@
         </div>
       </div>
 
-      <!-- Bookmark jump pips (right edge) -->
       <div class="bm-bar" id="bm-bar" aria-label="Bookmark navigation"></div>
     </div>
 
-    <!-- Voice recording wave -->
     <div class="voice-wave" id="voice-wave" role="status" aria-live="assertive">
       <div class="vb"></div><div class="vb"></div><div class="vb"></div>
       <div class="vb"></div><div class="vb"></div>
       <span class="voice-label">Listening… speak now</span>
     </div>
 
-    <!-- Reply-to context bar -->
     <div class="reply-bar" id="reply-bar" role="status">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>
       <span class="reply-bar-text" id="reply-bar-text">Replying…</span>
       <button class="reply-bar-x" id="reply-bar-x" aria-label="Cancel reply">✕</button>
     </div>
 
-    <!-- File attachments preview strip -->
     <div class="file-strip" id="file-strip" aria-label="Attached files"></div>
 
-    <!-- ── INPUT AREA ── -->
     <div class="input-wrapper">
       <div class="input-box" id="input-box">
         <div class="in-acts">
-          <!-- Attach file -->
           <button class="iab" id="btn-attach" title="Attach file" aria-label="Attach file">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
           </button>
-          <!-- Voice input -->
           <button class="iab" id="btn-voice" title="Voice input" aria-label="Voice input">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
           </button>
         </div>
 
-        <!-- Message textarea -->
         <textarea
           id="msg-input"
           rows="1"
@@ -239,7 +201,6 @@
           spellcheck="true"
         ></textarea>
 
-        <!-- Send button -->
         <button class="send-btn" id="send-btn" disabled aria-label="Send message">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <line x1="22" y1="2" x2="11" y2="13"/>
@@ -248,7 +209,6 @@
         </button>
       </div>
 
-      <!-- Hint row -->
       <div class="input-hint">
         <span>Ctrl+/ for shortcuts</span>
       </div>
@@ -256,9 +216,6 @@
 
   </main>
 
-  <!-- ═══════════════════════════════════════
-       SIDE PANEL (Bookmarks / Starred)
-  ═══════════════════════════════════════ -->
   <aside class="side-panel" id="side-panel" aria-label="Side panel">
     <div class="sp-header">
       <span class="sp-title" id="sp-title">Bookmarks</span>
@@ -269,17 +226,10 @@
 
 </div><!-- /app -->
 
-<!-- Hidden file input -->
 <input type="file" id="file-input" multiple accept="image/*,.pdf,.txt,.js,.py,.md,.json,.csv" style="display:none" aria-hidden="true" />
 
-<!-- Toast notification -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<!-- ═══════════════════════════════════════
-     MODALS
-═══════════════════════════════════════ -->
-
-<!-- Keyboard Shortcuts -->
 <div class="mbd" id="m-shortcuts" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
   <div class="modal" style="max-width:400px">
     <div class="mh">
@@ -302,7 +252,6 @@
   </div>
 </div>
 
-<!-- Export -->
 <div class="mbd" id="m-export" role="dialog" aria-modal="true" aria-label="Export conversation">
   <div class="modal" style="max-width:420px">
     <div class="mh">
@@ -321,7 +270,6 @@
   </div>
 </div>
 
-<!-- Tag -->
 <div class="mbd" id="m-tag" role="dialog" aria-modal="true" aria-label="Tag conversation">
   <div class="modal" style="max-width:360px">
     <div class="mh">
@@ -339,7 +287,6 @@
   </div>
 </div>
 
-<!-- Summarize -->
 <div class="mbd" id="m-summarize" role="dialog" aria-modal="true" aria-label="Conversation summary">
   <div class="modal" style="max-width:500px">
     <div class="mh">
@@ -356,7 +303,6 @@
   </div>
 </div>
 
-<!-- Scripts -->
 <script src="app.js"></script>
 </body>
 </html>
