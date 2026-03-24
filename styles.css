@@ -1,21 +1,3 @@
-/* ═══════════════════════════════════════════════════
-   NEURALCHAT — styles.css
-   Sections:
-   01. CSS Variables & Themes
-   02. Reset & Base
-   03. App Shell
-   04. Sidebar
-   05. Main & Topbar
-   06. Chat Area & Messages
-   07. Input Area
-   08. Side Panel
-   09. Modals
-   10. Toast
-   11. Utilities
-   12. Animations
-   13. Responsive
-═══════════════════════════════════════════════════ */
-
 /* ── 01. VARIABLES & THEMES ── */
 :root {
   --accent:       #6d6aff;
