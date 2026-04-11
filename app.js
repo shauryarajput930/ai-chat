@@ -1,7 +1,10 @@
+const API_KEY = 'AIzaSyA32dbBqGCGVQaSEL1yR3foQHVawtkjgxA';
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`;
+
 const SYSTEM_PROMPT = 'You are NeuralChat, a helpful, friendly, and knowledgeable AI assistant. Respond clearly, concisely, and helpfully.';
 
 /**
- * Call AI API via server endpoint.
+ * Call AI API with a message array.
  * Falls back to local responses when offline.
  * @param {Array<{role:string, content:string}>} messages
  * @param {string} [sys] - optional system instruction override
@@ -10,18 +13,23 @@ const SYSTEM_PROMPT = 'You are NeuralChat, a helpful, friendly, and knowledgeabl
 async function gemini(messages, sys = SYSTEM_PROMPT) {
   if (!navigator.onLine) return getLocalFallback();
   try {
-    const res = await fetch('/api/gemini', {
+    const contents = messages.map(m => ({
+      role: m.role === 'user' ? 'user' : 'model',
+      parts: [{ text: m.content }]
+    }));
+    const body = { contents };
+    if (sys) body.systemInstruction = { parts: [{ text: sys }] };
+
+    const res = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        messages: messages,
-        systemPrompt: sys 
-      })
+      body: JSON.stringify(body)
     });
     const data = await res.json();
-    return data.response || 'Unable to get a response. Please try again.';
+    return data?.candidates?.[0]?.content?.parts?.[0]?.text
+      || 'Unable to get a response. Please try again.';
   } catch (err) {
-    console.error('[NeuralChat] Server error:', err);
+    console.error('[NeuralChat] Gemini API error:', err);
     return getLocalFallback();
   }
 }
